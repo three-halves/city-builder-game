@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1028d8e5bb9f46d4c98e24eecbb7e723, type: 3}
+  m_Name: Battle Database
+  m_EditorClassIdentifier: 
+  Foes:
+  - Stats:
+      MaxHP: 5
+      Str: 2
+      Con: 0
+      Wis: 1
+      Spd: 1
+    timer: 3
+    _aiIndex: 1
+    _startAtFullHealth: 1
+    <SpriteIndex>k__BackingField: 1
+    <EXPBuildingIndex>k__BackingField: -1
+  - Stats:
+      MaxHP: 2
+      Str: 2
+      Con: 0
+      Wis: 0
+      Spd: 0
+    timer: 3
+    _aiIndex: 1
+    _startAtFullHealth: 1
+    <SpriteIndex>k__BackingField: 2
+    <EXPBuildingIndex>k__BackingField: -1
+  - Stats:
+      MaxHP: 8
+      Str: 4
+      Con: 1
+      Wis: 0
+      Spd: -40
+    timer: 3
+    _aiIndex: 1
+    _startAtFullHealth: 1
+    <SpriteIndex>k__BackingField: 3
+    <EXPBuildingIndex>k__BackingField: -1
+  levelUpThresholds: 0400000008000000140000003200000096000000
+  <EncounterTable>k__BackingField:
+  - encounters:
+    - foes: 00000000
+    - foes: 0100000001000000
+  - encounters:
+    - foes: 0000000000000000
+    - foes: 02000000
+    - foes: 0100000001000000010000000100000001000000
+  - encounters:
+    - foes: 0200000002000000
+    - foes: 02000000000000000000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000
+  - encounters:
+    - foes: 00000000
+    - foes: 0000000000000000

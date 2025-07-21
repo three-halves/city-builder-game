@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9026eb2c4cffb4baf5e43df3702ee3, type: 3}
+  m_Name: Defaut Tile Sprites
+  m_EditorClassIdentifier: 
+  Tiles:
+  - {fileID: 21300000, guid: 0089897135c17a7418052883039664ec, type: 3}
+  - {fileID: 21300000, guid: 870d1543d7b19f44189dc42f2894b425, type: 3}
+  - {fileID: 21300000, guid: b88a5984e2bb95a47a52f77842fafaaa, type: 3}
+  Buildings:
+  - {fileID: 21300000, guid: 26b11ea4326dfcb45b05d13acded866e, type: 3}
+  - {fileID: 21300000, guid: a7dc0f8d3e628054c8db7f2997427b8a, type: 3}
+  Battlers:
+  - {fileID: 21300000, guid: 2f9e7e9eb86dbaf449d27fb093673d49, type: 3}
+  - {fileID: 21300000, guid: d1309ebd15bdaa540bc3f375be0f9a1f, type: 3}
+  - {fileID: 21300000, guid: 3d798f1805eda7b49ab88a2b9b0db29c, type: 3}
+  - {fileID: 21300000, guid: 87e2466092f1bcc4b84345f1a9bdce26, type: 3}
