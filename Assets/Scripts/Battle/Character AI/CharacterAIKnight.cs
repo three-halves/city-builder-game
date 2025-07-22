@@ -5,7 +5,6 @@ namespace Battle
 {
     public class CharacterAIKnight : CharacterAI
     {
-        private int _EXPBuildingIndex = 1;
         private int level = 1;
         private int _attackCount = 0;
         private int _takenDamageCount = 0;
@@ -16,7 +15,7 @@ namespace Battle
             _attackCount = 0;
             _takenDamageCount = 0;
             // calculate hero level, get all EXP buildings
-            level = BattleManager.Instance.CalculateEXP(_EXPBuildingIndex);
+            level = character.Stats.Level;
         }
 
         public override float DoTurn(BattleCharacter character, List<BattleCharacter> targetableAllies, List<BattleCharacter> targetableFoes)
@@ -33,7 +32,7 @@ namespace Battle
 
             // Level 2: double attack
             // level 5: triple attack
-            if ((level >= 2 && _attackCount % 2 == 1) || (level >= 5 && _attackCount % 3 > 0)) return 0.2f;
+            if ((level >= 2 && level < 5 && _attackCount % 2 == 1) || (level >= 5 && _attackCount % 3 > 0)) return 0.2f;
             else return timer;
         }
 

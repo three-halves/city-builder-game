@@ -52,7 +52,7 @@ MonoBehaviour:
     statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 3
     <EXPBuildingIndex>k__BackingField: -1
-  levelUpThresholds: 0400000009000000140000002d0000007d000000
+  levelUpThresholds: 04000000090000001600000041000000
   <EncounterTable>k__BackingField:
   - encounters:
     - foes: 00000000

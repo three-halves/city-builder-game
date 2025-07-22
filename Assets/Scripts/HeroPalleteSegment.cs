@@ -21,11 +21,16 @@ public class HeroPalleteSegment : MonoBehaviour
     public void Refresh()
     {
         _icon.sprite = GameState.Instance.SpriteData.Battlers[SegmentCharacter.SpriteIndex];
-        int level = BattleManager.Instance.CalculateEXP(SegmentCharacter.EXPBuildingIndex);
-        _levelTextMesh.text = "Level " + level;
-        _nextTextMesh.text = "NXT: " + (BattleManager.Instance.BattleDatabase.levelUpThresholds[level - 1] 
-            - BuildingManager.Instance.TotalBuiltCount[SegmentCharacter.EXPBuildingIndex]) + " EXP";
-
+        _levelTextMesh.text = "Level " + SegmentCharacter.Stats.Level;
+        if (SegmentCharacter.Stats.Level - 1 == BattleManager.Instance.BattleDatabase.levelUpThresholds.Count)
+        {
+            _nextTextMesh.text = "MAX";
+        }
+        else 
+        {
+            _nextTextMesh.text = "NXT: " + (BattleManager.Instance.BattleDatabase.levelUpThresholds[SegmentCharacter.Stats.Level - 1] 
+            - SegmentCharacter.Stats.Exp) + " EXP";
+        }
         _healthFillImage.fillAmount = SegmentCharacter.HP / (float)SegmentCharacter.Stats.MaxHP;
         _healthTextMesh.text = SegmentCharacter.HP + " / " + SegmentCharacter.Stats.MaxHP + " HP";
     }

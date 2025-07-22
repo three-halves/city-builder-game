@@ -89,16 +89,5 @@ namespace Battle
 
             }
         }
-
-        public int CalculateEXP(int index)
-        {
-            int level = 1;
-            int buildingCount = BuildingManager.Instance.TotalBuiltCount[index];
-            foreach (int threshold in BattleDatabase.levelUpThresholds)
-            {
-                if (buildingCount >= threshold) level++;
-            }
-            return level;
-        }
     }
 }

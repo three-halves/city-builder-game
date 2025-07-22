@@ -1,3 +1,4 @@
+using Battle;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -76,6 +77,7 @@ public class GameState : MonoBehaviour
     {
         #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F1)) Cash += 1000;
+        if (Input.GetKeyDown(KeyCode.F3)) BattleManager.Instance.PlayerCharacters[0].Stats.Exp += 10;
         #endif
     }
 }

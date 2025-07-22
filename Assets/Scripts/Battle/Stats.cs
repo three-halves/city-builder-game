@@ -8,7 +8,8 @@ namespace Battle
         Str,
         Con,
         Wis,
-        Spd
+        Spd,
+        Exp
     }
 
     [Serializable]
@@ -19,6 +20,10 @@ namespace Battle
         public int Con;
         public int Wis;
         public int Spd;
+        [NonSerialized] public int Exp = 0;
+        public int Level {get{
+            return GetLevel();
+        }}
 
         public void ChangeStat(StatType stat, int delta)
         {
@@ -29,7 +34,18 @@ namespace Battle
                 case StatType.Con: Con += delta; break;
                 case StatType.Wis: Wis += delta; break;
                 case StatType.Spd: Spd += delta; break;
+                case StatType.Exp: Exp += delta; break;
             }
+        }
+
+        public int GetLevel()
+        {
+            int level = 1;
+            foreach (int threshold in BattleManager.Instance.BattleDatabase.levelUpThresholds)
+            {
+                if (Exp >= threshold) level++;
+            }
+            return level;
         }
     }
 }
