@@ -22,6 +22,8 @@ MonoBehaviour:
     timer: 3
     _aiIndex: 1
     _startAtFullHealth: 1
+    showStatusIcon: 0
+    statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 1
     <EXPBuildingIndex>k__BackingField: -1
   - Stats:
@@ -33,6 +35,8 @@ MonoBehaviour:
     timer: 3
     _aiIndex: 1
     _startAtFullHealth: 1
+    showStatusIcon: 0
+    statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 2
     <EXPBuildingIndex>k__BackingField: -1
   - Stats:
@@ -44,9 +48,11 @@ MonoBehaviour:
     timer: 3
     _aiIndex: 1
     _startAtFullHealth: 1
+    showStatusIcon: 0
+    statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 3
     <EXPBuildingIndex>k__BackingField: -1
-  levelUpThresholds: 0400000008000000140000003200000096000000
+  levelUpThresholds: 0400000009000000140000002d0000007d000000
   <EncounterTable>k__BackingField:
   - encounters:
     - foes: 00000000

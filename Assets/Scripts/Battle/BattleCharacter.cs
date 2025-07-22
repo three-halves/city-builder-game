@@ -14,6 +14,9 @@ namespace Battle
         [SerializeField] private int _aiIndex;
         [SerializeField] private bool _startAtFullHealth = true;
 
+        [SerializeField] public bool showStatusIcon = false;
+        [SerializeField] public int statusSpriteIndex = 0;
+
         // copy contructor
         public BattleCharacter(BattleCharacter other)
         {
@@ -43,6 +46,7 @@ namespace Battle
         // Called on battle start
         public void Setup(float timerOffset = 0f)
         {
+            showStatusIcon = false;
             BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].Setup(this);
             if (_startAtFullHealth) HP = Stats.MaxHP;
             timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f) + timerOffset;
@@ -59,6 +63,7 @@ namespace Battle
         public void Damage(int damage)
         {
             HP = Mathf.Max(HP - (damage - Stats.Con), 0);
+            BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].OnDamage(this);
         }
 
         public void Heal(int hp)

@@ -12,4 +12,6 @@ public class SpriteDatabase : ScriptableObject
 
     // Battle character sprites
     [SerializeField] public List<Sprite> Battlers;
+
+    [SerializeField] public List<Sprite> Statuses;
 }

@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1469,8 +1469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelWidth: 24
   _levelHeight: 24
-  _startingClaimedWidth: 5
-  _startingClaimedHeight: 5
+  _startingClaimedWidth: 4
+  _startingClaimedHeight: 4
   <TileScale>k__BackingField: 1
   baseTilePrefab: {fileID: 719732819234860081, guid: dd010014d169b97458c0f17cc1c7851a, type: 3}
 --- !u!4 &1227302291

@@ -54,7 +54,7 @@ namespace Battle
 
         public void GiveBattleReward(int difficulty)
         {
-            GameState.Instance.Cash += Mathf.Pow(5, difficulty * 0.15f + 0.5f) + (int)(difficulty * 1.5);
+            GameState.Instance.Cash += Mathf.Pow(5, difficulty * 0.15f + 0.5f) + difficulty;
         }
 
         public List<BattleCharacter> IntToFoeList(List<int> intList)

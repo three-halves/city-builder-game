@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameState : MonoBehaviour
 {
@@ -73,6 +74,8 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F1)) Cash += 1000;
+        #endif
     }
 }

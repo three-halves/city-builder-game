@@ -8,11 +8,13 @@ namespace Battle
         private int _EXPBuildingIndex = 1;
         private int level = 1;
         private int _attackCount = 0;
+        private int _takenDamageCount = 0;
 
         public override void Setup(BattleCharacter character)
         {
             base.Setup(character);
             _attackCount = 0;
+            _takenDamageCount = 0;
             // calculate hero level, get all EXP buildings
             level = BattleManager.Instance.CalculateEXP(_EXPBuildingIndex);
         }
@@ -20,16 +22,40 @@ namespace Battle
         public override float DoTurn(BattleCharacter character, List<BattleCharacter> targetableAllies, List<BattleCharacter> targetableFoes)
         {
             float timer = base.DoTurn(character, targetableAllies, targetableFoes);
-
+            if (targetableFoes.Count <= 0) return timer; 
             // Level 1: basic attack
             BattleCharacter target = targetableFoes[Random.Range(0, targetableFoes.Count)];
             target.Damage(character.Stats.Str);
             _attackCount++;
 
+            // level 4: heal on attack
+            if (level >= 4) character.Heal(2);
+
             // Level 2: double attack
-            if (level >= 2 && _attackCount % 2 == 1) return 0.2f;
+            // level 5: triple attack
+            if ((level >= 2 && _attackCount % 2 == 1) || (level >= 5 && _attackCount % 3 > 0)) return 0.2f;
             else return timer;
- 
+        }
+
+        public override void OnDamage(BattleCharacter character)
+        {
+            base.OnDamage(character);
+            _takenDamageCount++;
+            // level 3: block every 2nd attack
+            if (level >= 3)
+            {
+                if (_takenDamageCount % 2 == 1)
+                {
+                    character.showStatusIcon = true;
+                    character.statusSpriteIndex = 0;
+                    character.Stats.Con *= 3;
+                }
+                else
+                {
+                    character.showStatusIcon = false;
+                    character.Stats.Con /= 3;
+                };
+            }
         }
     }
 }

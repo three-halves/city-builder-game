@@ -51,7 +51,7 @@ MonoBehaviour:
   <BuildingDescription>k__BackingField: Makes cash
   <IsPurchasable>k__BackingField: 1
   <BuildingSpriteIndex>k__BackingField: 1
-  <BaseCost>k__BackingField: 100
+  <BaseCost>k__BackingField: 150
   <CostScaling>k__BackingField: 1.5
   cashPerSecond: 1
 --- !u!114 &2821258870640352069

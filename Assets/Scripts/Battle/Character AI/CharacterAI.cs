@@ -15,5 +15,10 @@ namespace Battle
         {
             return Mathf.Max(3f - character.Stats.Spd * 0.04f, 0.3f);
         }
+
+        public virtual void OnDamage(BattleCharacter character)
+        {
+
+        }
     }
 }

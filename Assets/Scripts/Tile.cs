@@ -87,6 +87,14 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         // Try build building
         BuildingManager.Instance.TryPlaceBuilding(GameState.Instance.SelectedBuildingIndex, tilePos);
 
+        #if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.F2))
+        {
+            Claim();
+            return;
+        } 
+        #endif
+
         // check if we can claim this tile (adjacent to claimed tile)
         bool adjacent = false;
         foreach (Tile t in Level.Instance.GetTilesInArea(tilePos + new Vector2Int(-1, -1), tilePos + new Vector2Int(2, 2)))
