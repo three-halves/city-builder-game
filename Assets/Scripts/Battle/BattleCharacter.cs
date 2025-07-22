@@ -62,7 +62,7 @@ namespace Battle
 
         public void Damage(int damage)
         {
-            HP = Mathf.Max(HP - (damage - Stats.Con), 0);
+            HP = Mathf.Max(HP - Mathf.Max(damage - Stats.Con, 0), 0);
             BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].OnDamage(this);
         }
 
