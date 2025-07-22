@@ -649,7 +649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86975426c519409b726302bf29762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSens: {x: -0.05, y: -0.05}
+  _lookSens: {x: -0.02, y: -0.02}
+  _targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &330585551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,6 +1886,8 @@ MonoBehaviour:
     timer: 3
     _aiIndex: 0
     _startAtFullHealth: 0
+    showStatusIcon: 0
+    statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 0
     <EXPBuildingIndex>k__BackingField: 1
   _view: {fileID: 535044345}

@@ -34,6 +34,9 @@ public class Level : MonoBehaviour
     {
         _tiles = new Tile[_levelHeight, _levelWidth];
         GenerateLevel();
+
+        // center cam
+        Camera.main.GetComponent<CameraController>().SetTargetPos(TileToWorldPos(new Vector2(_levelWidth / 2, _levelHeight / 2)));
     }
 
     void GenerateLevel()

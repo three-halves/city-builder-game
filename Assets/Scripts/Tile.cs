@@ -111,6 +111,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     private IEnumerator StartBattle()
     {
+        Camera.main.GetComponent<CameraController>().SetTargetPos(transform.position + Vector3.up * 2);
         IsInBattle = true;
         yield return StartCoroutine(BattleManager.Instance.StartBattle(
             Difficutly, 
