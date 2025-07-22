@@ -8,7 +8,7 @@ namespace Battle
     public class BattleCharacter
     {
         public int HP { get; private set; }
-        [SerializeField] public BattleCharacterStats Stats;
+        [SerializeField] public Stats Stats;
         public float timer;
         // From battle database
         [SerializeField] private int _aiIndex;

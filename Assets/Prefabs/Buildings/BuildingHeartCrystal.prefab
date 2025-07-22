@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7897901827560850428}
-  - component: {fileID: 673049823491474304}
+  - component: {fileID: -6177621749502227712}
   - component: {fileID: 2821258870640352069}
   - component: {fileID: 8299767817565944445}
   m_Layer: 0
-  m_Name: BuildingFarm
+  m_Name: BuildingHeartCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &673049823491474304
+--- !u!114 &-6177621749502227712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,17 +43,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 788306434757603178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d07eec23312ae4983fe9596395c69c, type: 3}
+  m_Script: {fileID: 11500000, guid: f093f433b8816514fa28f13bf710fd1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Footprint>k__BackingField: {x: 2, y: 2}
-  <BuildingName>k__BackingField: Farm
-  <BuildingDescription>k__BackingField: Makes cash
+  <Footprint>k__BackingField: {x: 1, y: 1}
+  <BuildingName>k__BackingField: Heart Crystal
+  <BuildingDescription>k__BackingField: +Knight HP
   <IsPurchasable>k__BackingField: 1
-  <BuildingSpriteIndex>k__BackingField: 1
-  <BaseCost>k__BackingField: 100
-  <CostScaling>k__BackingField: 1.5
-  cashPerSecond: 1
+  <BuildingSpriteIndex>k__BackingField: 2
+  <BaseCost>k__BackingField: 40
+  <CostScaling>k__BackingField: 1.25
+  _heroIndex: 0
+  _statType: 0
+  _boostAmount: 1
 --- !u!114 &2821258870640352069
 MonoBehaviour:
   m_ObjectHideFlags: 0
