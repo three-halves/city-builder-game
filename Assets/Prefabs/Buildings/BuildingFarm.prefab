@@ -50,6 +50,7 @@ MonoBehaviour:
   <BuildingName>k__BackingField: Farm
   <BuildingDescription>k__BackingField: Makes cash
   <IsPurchasable>k__BackingField: 1
+  <ExcludeBiomes>k__BackingField: 0100000002000000
   <BuildingSpriteIndex>k__BackingField: 1
   <BaseCost>k__BackingField: 150
   <CostScaling>k__BackingField: 1.5

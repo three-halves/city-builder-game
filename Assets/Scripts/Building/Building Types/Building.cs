@@ -8,11 +8,14 @@ public class Building : MonoBehaviour
     [field: SerializeField] public string BuildingDescription {get; private set;} = "Default Building Description";
     // Is this building purchasable from the regular menu?
     [field: SerializeField] public bool IsPurchasable {get; private set;} = true;
+    // Tiles this building cannot be placed on
+    [field: SerializeField] public Tile.Biome[] ExcludeBiomes {get; private set;}
     // Index of sprite in sprite database
     [field: SerializeField] public int BuildingSpriteIndex {get; private set;}
 
     [field: SerializeField] public int BaseCost {get; private set;} = 100;
     public int Cost {get; private set;}
+    // Cost multiplier each purchase
     [field: SerializeField] public float CostScaling {get; private set;} = 1.25f;
 
     private BuildingView _view;

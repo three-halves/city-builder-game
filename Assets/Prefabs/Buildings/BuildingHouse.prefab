@@ -117,6 +117,7 @@ MonoBehaviour:
   <BuildingName>k__BackingField: House
   <BuildingDescription>k__BackingField: +Knight EXP
   <IsPurchasable>k__BackingField: 1
+  <ExcludeBiomes>k__BackingField: 0100000002000000
   <BuildingSpriteIndex>k__BackingField: 0
   <BaseCost>k__BackingField: 10
   <CostScaling>k__BackingField: 1.25

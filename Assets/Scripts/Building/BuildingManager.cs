@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
@@ -101,7 +102,7 @@ public class BuildingManager : MonoBehaviour
         bool allTilesAreFree = true;
         foreach (Tile tile in tilesInFootprint)
         {
-            allTilesAreFree &= !tile.IsOccupied && tile.IsClaimed;
+            allTilesAreFree &= !tile.IsOccupied && tile.IsClaimed && !unplacedBuilding.ExcludeBiomes.Contains(tile.TileBiome);
         }
 
         bool canAfford = (GameState.Instance.Cash >= unplacedBuilding.Cost)
