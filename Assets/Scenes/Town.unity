@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86975426c519409b726302bf29762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookSens: {x: -0.02, y: -0.02}
+  _lookSens: {x: -0.03, y: -0.03}
   _targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &330585551
 MonoBehaviour:
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleDatabase: {fileID: 11400000, guid: e94b1279262b6614f967abf1099cb564, type: 2}
-  <PlayerCharacters>k__BackingField:
+  _playerCharacters:
   - {fileID: 11400000, guid: f9cbadccc7095c3418a939c02c47c3d9, type: 2}
   _view: {fileID: 535044345}
   _healInterval: 1
@@ -2324,7 +2324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2123951781}
-  - component: {fileID: 2123951780}
+  - component: {fileID: 2123951782}
   m_Layer: 0
   m_Name: FoeParty
   m_TagString: Untagged
@@ -2332,32 +2332,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2123951780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123951779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!224 &2123951781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2377,6 +2351,30 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 0}
   m_SizeDelta: {x: 2.5, y: 0}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &2123951782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123951779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 1
+  m_CellSize: {x: 1, y: 1}
+  m_Spacing: {x: 0.1, y: 0.25}
+  m_Constraint: 2
+  m_ConstraintCount: 3
 --- !u!1 &2126858958
 GameObject:
   m_ObjectHideFlags: 0

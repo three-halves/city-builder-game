@@ -21,6 +21,16 @@ namespace Battle
         public int Wis;
         public int Spd;
         [NonSerialized] public int Exp = 0;
+
+        public Stats(Stats stats)
+        {
+            MaxHP = stats.MaxHP;
+            Str = stats.Str;
+            Con = stats.Con;
+            Wis = stats.Wis;
+            Spd = stats.Spd;
+        }
+
         public int Level {get{
             return GetLevel();
         }}

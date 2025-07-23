@@ -10,6 +10,7 @@ namespace Battle
         public int HP { get; private set; }
         [field: SerializeField] public string CharacterName {get; private set;} = "[UNKNOWN]";
         [SerializeField] public Stats Stats;
+        public Stats LocalStats;
         [NonSerialized]public float timer;
         // From battle database
         [SerializeField] private int _aiIndex;
@@ -53,6 +54,7 @@ namespace Battle
             if (_startAtFullHealth) HP = Stats.MaxHP;
             Debug.Log(name + " " + HP);
             timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f) + timerOffset;
+            LocalStats = new(Stats);
         }
 
         // Called each turn in battle
@@ -65,13 +67,20 @@ namespace Battle
 
         public void Damage(int damage)
         {
-            HP = Mathf.Max(HP - Mathf.Max(damage - Stats.Con, 0), 0);
+            HP = Mathf.Max(HP - Mathf.Max(damage - LocalStats.Con, 0), 0);
             BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].OnDamage(this);
         }
 
         public void Heal(int hp)
         {
-            HP = Mathf.Min(HP + hp, Stats.MaxHP);
+            if (BattleManager.Instance.IsBattleOngoing)
+            {
+                HP = Mathf.Min(HP + hp, Stats.MaxHP);
+            }
+            else
+            {
+                HP = Mathf.Min(HP + hp, LocalStats.MaxHP);
+            }
         }
     }
 }

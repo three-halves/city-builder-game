@@ -24,7 +24,7 @@ namespace Battle
             if (targetableFoes.Count <= 0) return timer; 
             // Level 1: basic attack
             BattleCharacter target = targetableFoes[Random.Range(0, targetableFoes.Count)];
-            target.Damage(character.Stats.Str);
+            target.Damage(character.LocalStats.Str);
             _attackCount++;
 
             // level 4: heal on attack
@@ -47,12 +47,12 @@ namespace Battle
                 {
                     character.showStatusIcon = true;
                     character.statusSpriteIndex = 0;
-                    character.Stats.Con *= 3;
+                    character.LocalStats.Con *= 3;
                 }
                 else
                 {
                     character.showStatusIcon = false;
-                    character.Stats.Con /= 3;
+                    character.LocalStats.Con /= 3;
                 };
             }
         }

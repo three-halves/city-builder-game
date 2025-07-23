@@ -10,7 +10,8 @@ namespace Battle
     {
         public static BattleManager Instance {get; private set;}
         [SerializeField] public BattleDatabase BattleDatabase;
-        [field: SerializeField] public List<BattleCharacter> PlayerCharacters {get; private set;}
+        [SerializeField] private List<BattleCharacter> _playerCharacters;
+        public List<BattleCharacter> PlayerCharacters {get; private set;}
         [SerializeField] private BattleView _view;
         // If a battle is currently happening
         public bool IsBattleOngoing {get; private set;}
@@ -22,6 +23,7 @@ namespace Battle
             if(Instance == null)
             {
                 Instance = this;
+                PlayerCharacters = _playerCharacters.ConvertAll(c => Instantiate(c));
             }
             else{
                 Destroy(gameObject);
