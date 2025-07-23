@@ -6,7 +6,7 @@ namespace Battle
     [CreateAssetMenu(fileName = "Battle Database", menuName = "Battle Database")]
     public class BattleDatabase : ScriptableObject
     {
-        [SerializeField] public List<BattleCharacter> Foes;
+        // [SerializeField] public List<BattleCharacter> Foes;
         public List<CharacterAI> AITypes = new()
         {
             new CharacterAIKnight(),

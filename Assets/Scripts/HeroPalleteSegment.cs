@@ -20,7 +20,7 @@ public class HeroPalleteSegment : MonoBehaviour
 
     public void Refresh()
     {
-        _icon.sprite = GameState.Instance.SpriteData.Battlers[SegmentCharacter.SpriteIndex];
+        _icon.sprite = SegmentCharacter.Sprite;
         _levelTextMesh.text = "Level " + SegmentCharacter.Stats.Level;
         if (SegmentCharacter.Stats.Level - 1 == BattleManager.Instance.BattleDatabase.levelUpThresholds.Count)
         {

@@ -12,7 +12,7 @@ namespace Battle
 
         public void Setup(BattleCharacter bc)
         {
-            _battlerImage.sprite = GameState.Instance.SpriteData.Battlers[bc.SpriteIndex];
+            _battlerImage.sprite = bc.Sprite;
 
         }
 

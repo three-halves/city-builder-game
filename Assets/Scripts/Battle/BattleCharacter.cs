@@ -4,19 +4,21 @@ using UnityEngine;
 
 namespace Battle 
 {
-    [Serializable]
-    public class BattleCharacter
+    [CreateAssetMenu(fileName = "BattleCharacter", menuName = "BattleCharacter")]
+    public class BattleCharacter : ScriptableObject
     {
         public int HP { get; private set; }
         [field: SerializeField] public string CharacterName {get; private set;} = "[UNKNOWN]";
         [SerializeField] public Stats Stats;
-        public float timer;
+        [NonSerialized]public float timer;
         // From battle database
         [SerializeField] private int _aiIndex;
         [SerializeField] private bool _startAtFullHealth = true;
 
-        [SerializeField] public bool showStatusIcon = false;
-        [SerializeField] public int statusSpriteIndex = 0;
+        [NonSerialized] public bool showStatusIcon = false;
+        [NonSerialized] public int statusSpriteIndex = 0;
+
+        [field: SerializeField] public Sprite Sprite {get; private set;}
 
         // copy contructor
         public BattleCharacter(BattleCharacter other)
@@ -25,13 +27,12 @@ namespace Battle
             Stats = other.Stats;
             timer = other.timer;
             _aiIndex = other._aiIndex;
-            SpriteIndex = other.SpriteIndex;
             _startAtFullHealth = other._startAtFullHealth;
-            EXPBuildingIndex = other.EXPBuildingIndex;
+            Sprite = other.Sprite;
+            CharacterName = other.CharacterName;
         }
 
-        [field: SerializeField] public int SpriteIndex {get; private set;}
-        [field: SerializeField] public int EXPBuildingIndex {get; private set;} = -1;
+        // [field: SerializeField] public int SpriteIndex {get; private set;}
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public void Start()
         {
@@ -50,6 +51,7 @@ namespace Battle
             showStatusIcon = false;
             BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].Setup(this);
             if (_startAtFullHealth) HP = Stats.MaxHP;
+            Debug.Log(name + " " + HP);
             timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f) + timerOffset;
         }
 

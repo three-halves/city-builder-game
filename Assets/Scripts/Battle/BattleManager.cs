@@ -57,16 +57,16 @@ namespace Battle
             GameState.Instance.Cash += Mathf.Pow(5, difficulty * 0.15f + 0.5f) + difficulty;
         }
 
-        public List<BattleCharacter> IntToFoeList(List<int> intList)
-        {
-            List<BattleCharacter> bcs = new();
-            foreach (int i in intList)
-            {
-                bcs.Add(new BattleCharacter(BattleDatabase.Foes[i]));
-            }
-            return bcs;
+        // public List<BattleCharacter> IntToFoeList(List<int> intList)
+        // {
+        //     List<BattleCharacter> bcs = new();
+        //     foreach (int i in intList)
+        //     {
+        //         bcs.Add(new BattleCharacter(BattleDatabase.Foes[i]));
+        //     }
+        //     return bcs;
 
-        }
+        // }
 
         void Start()
         {

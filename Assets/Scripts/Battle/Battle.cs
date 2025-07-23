@@ -19,13 +19,13 @@ namespace Battle
 
         public Battle(List<BattleCharacter> allies, List<BattleCharacter> foes)
         {
+            // Allies = allies.ConvertAll(c => Object.Instantiate(c));
             Allies = allies;
-            Foes = foes;
-
-            AllCharacters = new(foes);
+            Foes = foes.ConvertAll(c => Object.Instantiate(c));
+            AllCharacters = new(Foes);
             AllCharacters.AddRange(allies);
 
-            foreach (var character in foes)
+            foreach (var character in Foes)
             {
                 // offset enemy attack timers initially so attacks aren't synced
                 character.Setup(Random.Range(0.25f, 0.5f));

@@ -7,7 +7,7 @@ namespace Battle
     public class Encounter
     {
         // Index from database
-        public List<int> foes;
+        public List<BattleCharacter> foes;
     }
 
     [Serializable]

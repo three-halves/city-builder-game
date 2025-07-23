@@ -44,7 +44,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
         // Choose foe from difficulty table
         List<Encounter> encounters = BattleManager.Instance.BattleDatabase.EncounterTable[Mathf.Min(Difficutly - 1, 10)].encounters;
-        foes = BattleManager.Instance.IntToFoeList(encounters[Random.Range(0, encounters.Count)].foes);
+        foes = encounters[Random.Range(0, encounters.Count)].foes;
 
         _view.Refresh(this);
     }
@@ -121,7 +121,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     private IEnumerator StartBattle()
     {
-        Camera.main.GetComponent<CameraController>().SetTargetPos(transform.position + Vector3.up * 2);
+        Camera.main.GetComponent<CameraController>().SetTargetPos(transform.position + Vector3.up);
         IsInBattle = true;
         yield return StartCoroutine(BattleManager.Instance.StartBattle(
             Difficutly, 
