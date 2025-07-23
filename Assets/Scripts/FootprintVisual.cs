@@ -5,19 +5,32 @@ public class FootprintVisual : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _overlayRenderer;
     private Building _selectedBuilding;
+    private Vector2Int _selectionSize;
     private Vector2Int _tilePos;
+    private bool _showOverlay;
 
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        GameState.Instance.SelectedTileListener += OnSelectedTile;
+        GameState.Instance.HoveredTileListener += OnHoveredTile;
+        GameState.Instance.HoveredBuildingListener += OnHoveredBuilding;
         GameState.Instance.SelectedBuildingListener += OnSelectedBuilding;
         _selectedBuilding = GameState.Instance.SelectedBuildingObject?.GetComponent<Building>();
     }
 
-    void OnSelectedTile(Vector2Int pos, Tile tile)
+    void OnHoveredTile(Vector2Int pos, Tile tile)
     {
+        _showOverlay = true;
         _tilePos = pos;
+        _selectionSize = Vector2Int.one;
+        CalculateSizeAndPosition();
+    }
+
+    void OnHoveredBuilding(Vector2Int pos, Building building)
+    {
+        _showOverlay = false;
+        _tilePos = pos;
+        _selectionSize = building.Footprint;
         CalculateSizeAndPosition();
     }
 
@@ -30,12 +43,12 @@ public class FootprintVisual : MonoBehaviour
     void CalculateSizeAndPosition()
     {
         Vector2 size;
-        if (_selectedBuilding == null)
+        if (_selectedBuilding == null || !_showOverlay)
         {
-            size = Vector2.one;
+            size = _selectionSize;
             _overlayRenderer.sprite = null;
         }
-        else 
+        else
         {
             size = (Vector2)_selectedBuilding.Footprint * Level.Instance.TileScale;
             _overlayRenderer.sprite = GameState.Instance.SpriteData.Buildings[_selectedBuilding.BuildingSpriteIndex];

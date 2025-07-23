@@ -26,18 +26,14 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     public Vector2Int tilePos;
 
-    private bool _isOccupied;
     public bool IsOccupied {
         get
         {
-            return _isOccupied;
-        }
-        set
-        {
-            _isOccupied = value;
-            _view.Refresh(this);
+            return OccupyingBuilding != null;
         }
     }
+
+    public Building OccupyingBuilding = null;
 
     public void Setup(Biome biome, int difficulty)
     {
@@ -138,8 +134,18 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        IsHovered = true;
-        GameState.Instance.SelectTile(tilePos, this);
+        // Select this tile if there is no building on top of it
+        if (!IsOccupied)
+        {
+            IsHovered = true;
+            GameState.Instance.HoverTile(tilePos, this);
+        }
+        // otherwise select the building
+        else
+        {
+            GameState.Instance.HoverBuilding(OccupyingBuilding.PlacedTilePos, OccupyingBuilding);
+        }
+
         _view.Refresh(this);
     }
 

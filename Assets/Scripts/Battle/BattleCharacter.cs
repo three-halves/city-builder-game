@@ -8,6 +8,7 @@ namespace Battle
     public class BattleCharacter
     {
         public int HP { get; private set; }
+        [field: SerializeField] public string CharacterName {get; private set;} = "[UNKNOWN]";
         [SerializeField] public Stats Stats;
         public float timer;
         // From battle database

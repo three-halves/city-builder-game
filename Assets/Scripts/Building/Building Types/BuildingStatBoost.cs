@@ -8,6 +8,19 @@ public class BuildingStatBoost : Building
     [SerializeField] private StatType _statType;
     [SerializeField] private int _boostAmount;
 
+    public override string BuildingTooltip 
+    {
+        get
+        {
+            return string.Format(
+                "Increases {0}'s {1} by {2}.", 
+                BattleManager.Instance.PlayerCharacters[_heroIndex].CharacterName,
+                _statType,
+                _boostAmount
+                );  
+        }
+    }
+
     public override void Setup()
     {
         base.Setup();

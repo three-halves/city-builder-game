@@ -1879,7 +1879,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleDatabase: {fileID: 11400000, guid: e94b1279262b6614f967abf1099cb564, type: 2}
   <PlayerCharacters>k__BackingField:
-  - Stats:
+  - <CharacterName>k__BackingField: Knight
+    Stats:
       MaxHP: 5
       Str: 2
       Con: 1

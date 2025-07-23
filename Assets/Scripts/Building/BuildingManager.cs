@@ -82,7 +82,7 @@ public class BuildingManager : MonoBehaviour
             
             foreach(Tile tile in tilesInFootprint)
             {
-                tile.IsOccupied = true;
+                tile.OccupyingBuilding = bldg;
             }
             
             // deselect building only if we cant place another

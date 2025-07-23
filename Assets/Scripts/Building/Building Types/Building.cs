@@ -6,6 +6,7 @@ public class Building : MonoBehaviour
     [field: SerializeField] public Vector2Int Footprint {get; private set;} = Vector2Int.one ;
     [field: SerializeField] public string BuildingName {get; private set;} = "Default Building Name";
     [field: SerializeField] public string BuildingDescription {get; private set;} = "Default Building Description";
+    [field: SerializeField] public virtual string BuildingTooltip {get;} = "Default Building Tooltip";
     // Is this building purchasable from the regular menu?
     [field: SerializeField] public bool IsPurchasable {get; private set;} = true;
     // Tiles this building cannot be placed on
@@ -17,6 +18,8 @@ public class Building : MonoBehaviour
     public int Cost {get; private set;}
     // Cost multiplier each purchase
     [field: SerializeField] public float CostScaling {get; private set;} = 1.25f;
+
+    public Vector2Int PlacedTilePos {get; private set;}
 
     private BuildingView _view;
 
@@ -35,6 +38,7 @@ public class Building : MonoBehaviour
         _view = GetComponent<BuildingView>();
         Vector2 offset = (Footprint - Vector2.one) / 2f * new Vector2(-1, 1);
         transform.position = Level.Instance.TileToWorldPos(pos) - offset;
+        PlacedTilePos = pos;
 
         _view.Refresh(this);
     }

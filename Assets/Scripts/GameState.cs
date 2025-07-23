@@ -54,16 +54,24 @@ public class GameState : MonoBehaviour
         return (int)_cash;
     }
 
-    public delegate void SelectedTileDelegate(Vector2Int tilePos, Tile tile);
-    public event SelectedTileDelegate SelectedTileListener;
+    public delegate void HoveredTileDelegate(Vector2Int tilePos, Tile tile);
+    public event HoveredTileDelegate HoveredTileListener;
+
+    public delegate void HoveredBuildingDelegate(Vector2Int pos, Building building);
+    public event HoveredBuildingDelegate HoveredBuildingListener;
 
     public delegate void SelectedBuildingDelegate(Building building);
     public event SelectedBuildingDelegate SelectedBuildingListener;
 
     // called from tile object
-    public void SelectTile(Vector2Int tilePos, Tile tile)
+    public void HoverTile(Vector2Int tilePos, Tile tile)
     {
-        SelectedTileListener?.Invoke(tilePos, tile);
+        HoveredTileListener?.Invoke(tilePos, tile);
+    }
+
+    public void HoverBuilding(Vector2Int buildingPos, Building building)
+    {
+        HoveredBuildingListener?.Invoke(buildingPos, building);
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
