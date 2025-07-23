@@ -1474,6 +1474,8 @@ MonoBehaviour:
   _startingClaimedHeight: 4
   <TileScale>k__BackingField: 1
   baseTilePrefab: {fileID: 719732819234860081, guid: dd010014d169b97458c0f17cc1c7851a, type: 3}
+  waterAltThreshold: 0.3
+  rockAltThreshold: 0.75
 --- !u!4 &1227302291
 Transform:
   m_ObjectHideFlags: 0

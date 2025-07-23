@@ -18,6 +18,10 @@ public class Level : MonoBehaviour
 
     private Tile[,] _tiles;
 
+    // Level gen settings
+    [SerializeField] private float waterAltThreshold = 0.25f;
+    [SerializeField] private float rockAltThreshold = 0.75f;
+
     void Awake()
     {
         if(Instance == null)
@@ -39,8 +43,25 @@ public class Level : MonoBehaviour
         Camera.main.GetComponent<CameraController>().SetTargetPos(TileToWorldPos(new Vector2(_levelWidth / 2, _levelHeight / 2)));
     }
 
+    void Update()
+    {
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            GenerateLevel();
+            Debug.Log("GenerateLevel");
+        }
+        #endif
+    }
+
     void GenerateLevel()
     {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+
+        // Initial pass, set up positions and biome
         for (int i = 0; i < _levelHeight; i++)
         {
             for (int j = 0; j < _levelWidth; j++)
@@ -52,7 +73,8 @@ public class Level : MonoBehaviour
                 // get euclidian distance from center to assign difficulty
                 float dist = Mathf.Sqrt((i - _levelHeight / 2) * (i - _levelHeight / 2) + (j - _levelWidth / 2) * (j - _levelWidth / 2));
                 int difficulty = Mathf.Max((int)Mathf.Ceil(dist) - _startingClaimedWidth / 2 + Random.Range(-1, 2), 1);
-                newTile.Setup(Tile.Biome.Grass, difficulty);
+                Tile.Biome biome = CalculateBiome(i, j, dist);            
+                newTile.Setup(biome, difficulty);
                 newTile.transform.position = new Vector3(j * TileScale, -i * TileScale, 0);
                 newTile.tilePos = new Vector2Int(j, i);
 
@@ -66,6 +88,46 @@ public class Level : MonoBehaviour
                 _tiles[i, j] = newTile;
             }
         }
+
+        // Second pass, finalize tile biomes
+        for (int i = 0; i < _levelHeight; i++)
+        {
+            for (int j = 0; j < _levelWidth; j++)
+            {
+                if (_tiles[j,i].TileBiome == Tile.Biome.Water && !GetAdjacentBiomes(i, j).Contains(Tile.Biome.Water))
+                    _tiles[j,i].SetBiome(Tile.Biome.Grass);
+            }
+        }
+    }
+
+    private Tile.Biome CalculateBiome(int i, int j, float dist)
+    {
+        float py = i / (float)_levelHeight * 10;
+        float px = j / (float)_levelWidth * 10;
+        float altitude = Mathf.PerlinNoise(px, py);
+        Tile.Biome b = Tile.Biome.Grass;
+        // bounds and starting area check
+        if (dist < _startingClaimedWidth || i < 0 || j < 0 || i > _levelHeight || j > _levelWidth) 
+            return b;
+
+        if (altitude < waterAltThreshold) 
+            b = Tile.Biome.Water;
+        if (altitude > rockAltThreshold) 
+            b = Tile.Biome.Rock;
+
+        return b;
+    }
+
+    // returns a list of the biomes of the 4-way adjacent tiles of the position given
+    public List<Tile.Biome> GetAdjacentBiomes(int x, int y)
+    {
+        return new()
+        {
+            (y + 1 >= _levelHeight) ? Tile.Biome.Grass : _tiles[y + 1, x].TileBiome,
+            (y - 1 < 0) ? Tile.Biome.Grass : _tiles[y - 1, x].TileBiome,
+            (x + 1 >= _levelWidth) ? Tile.Biome.Grass : _tiles[y, x + 1].TileBiome,
+            (x - 1 < 0) ? Tile.Biome.Grass : _tiles[y, x - 1].TileBiome
+        };
     }
 
     public Vector2 TileToWorldPos(Vector2 tile)

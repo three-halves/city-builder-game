@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         Grass,
         Water,
-        Sand
+        Rock
     }
 
     private TileView _view;
@@ -53,6 +53,12 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         _view.Refresh(this);
     }
 
+    public void SetBiome(Biome b)
+    {
+        TileBiome = b;
+        _view.Refresh(this);
+    }
+
     // Start battle sequence 
     public void TryClaim()
     {
@@ -83,7 +89,8 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
+        // Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
+        // Level.Instance.GetAdjacentBiomes(tilePos.x, tilePos.y).ForEach(i => Debug.Log(i.ToString()));
         // Try build building
         BuildingManager.Instance.TryPlaceBuilding(GameState.Instance.SelectedBuildingIndex, tilePos);
 
