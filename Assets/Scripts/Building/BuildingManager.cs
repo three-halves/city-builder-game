@@ -83,6 +83,7 @@ public class BuildingManager : MonoBehaviour
             foreach(Tile tile in tilesInFootprint)
             {
                 tile.OccupyingBuilding = bldg;
+                GameState.Instance.HoverBuilding(tilePos, bldg);
             }
             
             // deselect building only if we cant place another

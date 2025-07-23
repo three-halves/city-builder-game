@@ -85,6 +85,13 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
+        // interact with built building if possible
+        if (OccupyingBuilding != null)
+        {
+            OccupyingBuilding.OnInteract();
+            return;
+        }
+        
         // Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
         // Level.Instance.GetAdjacentBiomes(tilePos.x, tilePos.y).ForEach(i => Debug.Log(i.ToString()));
         // Try build building

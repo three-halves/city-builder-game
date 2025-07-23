@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
     [field: SerializeField] public string BuildingName {get; private set;} = "Default Building Name";
     [field: SerializeField] public string BuildingDescription {get; private set;} = "Default Building Description";
     [field: SerializeField] public virtual string BuildingTooltip {get;} = "Default Building Tooltip";
+    [field: SerializeField] public virtual string OverlayText {get;} = ""; 
     // Is this building purchasable from the regular menu?
     [field: SerializeField] public bool IsPurchasable {get; private set;} = true;
     // Tiles this building cannot be placed on
@@ -21,7 +22,7 @@ public class Building : MonoBehaviour
 
     public Vector2Int PlacedTilePos {get; private set;}
 
-    private BuildingView _view;
+    protected BuildingView _view;
 
     public virtual void Setup()
     {
