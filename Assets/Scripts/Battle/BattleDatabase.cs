@@ -10,7 +10,8 @@ namespace Battle
         public List<CharacterAI> AITypes = new()
         {
             new CharacterAIKnight(),
-            new CharacterAIBasic()
+            new CharacterAIBasic(),
+            new CharacterAIMultiHit()
         };
 
         [SerializeField] public List<int> levelUpThresholds = new();

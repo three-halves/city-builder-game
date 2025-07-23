@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Battle Database
   m_EditorClassIdentifier: 
   Foes:
-  - Stats:
+  - <CharacterName>k__BackingField: Frown
+    Stats:
       MaxHP: 5
       Str: 2
       Con: 0
@@ -26,7 +27,8 @@ MonoBehaviour:
     statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 1
     <EXPBuildingIndex>k__BackingField: -1
-  - Stats:
+  - <CharacterName>k__BackingField: Bug
+    Stats:
       MaxHP: 2
       Str: 2
       Con: 0
@@ -39,7 +41,8 @@ MonoBehaviour:
     statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 2
     <EXPBuildingIndex>k__BackingField: -1
-  - Stats:
+  - <CharacterName>k__BackingField: Shadeflower
+    Stats:
       MaxHP: 8
       Str: 4
       Con: 1
@@ -52,6 +55,20 @@ MonoBehaviour:
     statusSpriteIndex: 0
     <SpriteIndex>k__BackingField: 3
     <EXPBuildingIndex>k__BackingField: -1
+  - <CharacterName>k__BackingField: Juggling Ball
+    Stats:
+      MaxHP: 12
+      Str: 4
+      Con: 1
+      Wis: 0
+      Spd: -20
+    timer: 3
+    _aiIndex: 2
+    _startAtFullHealth: 1
+    showStatusIcon: 0
+    statusSpriteIndex: 0
+    <SpriteIndex>k__BackingField: 4
+    <EXPBuildingIndex>k__BackingField: -1
   levelUpThresholds: 04000000090000001600000041000000
   <EncounterTable>k__BackingField:
   - encounters:
@@ -62,8 +79,9 @@ MonoBehaviour:
     - foes: 02000000
     - foes: 0100000001000000010000000100000001000000
   - encounters:
-    - foes: 0200000002000000
-    - foes: 02000000000000000000000000000000
+    - foes: 020000000200000002000000
+    - foes: 0200000000000000000000000000000000000000
+    - foes: 0300000001000000
   - encounters:
     - foes: 00000000
     - foes: 0000000000000000

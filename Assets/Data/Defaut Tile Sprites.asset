@@ -25,5 +25,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1309ebd15bdaa540bc3f375be0f9a1f, type: 3}
   - {fileID: 21300000, guid: 3d798f1805eda7b49ab88a2b9b0db29c, type: 3}
   - {fileID: 21300000, guid: 87e2466092f1bcc4b84345f1a9bdce26, type: 3}
+  - {fileID: 21300000, guid: f592c9b4b65e03342a01d4645a3bc357, type: 3}
   Statuses:
   - {fileID: 21300000, guid: f02dc3e3a96114d42b59c9a284e060c0, type: 3}
