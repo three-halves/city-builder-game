@@ -11,7 +11,7 @@ namespace Battle
             if (targetableAllies.Count > 0)
             {
                 BattleCharacter target = targetableAllies[Random.Range(0, targetableAllies.Count)];
-                target.Damage(character.Stats.Str);
+                target.Damage(character.LocalStats.Str);
             }
 
             return timer;

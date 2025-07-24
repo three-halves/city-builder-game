@@ -1,40 +1,51 @@
+using System;
 using UnityEngine;
 
 public class BuildingFarm : Building
 {
-    [SerializeField] private float _cashPerSecond;
-    private float _storedCash;
+    // Randomized amount of time to produce 1 currency type
+    [SerializeField] private Vector2 currencyInterval = Vector2.one;
+    private int _storedCurrency;
     [SerializeField] private int _maxStorage;
-
+    [SerializeField] private GameState.CurrencyType _currencyType;
+    [SerializeField] private float _timer = 0f;
     public override string OverlayText 
     {
-        get { return ((int)_storedCash == 0) ? "" : "" + (int)_storedCash;}
+        get { return (_storedCurrency < 1) ? "" : "" + _storedCurrency;}
+    }
+
+    public override bool ShowOverlayIcon
+    {
+        get {return _maxStorage == 1 && _storedCurrency == 1;}
     }
 
     public override string BuildingTooltip 
     {
         get
         {
-            return "Makes " + _cashPerSecond + " cash per second.\nMax Capacity: " + _maxStorage +".";  
+            if (currencyInterval.x <= 1f)
+                return string.Format("Makes {0} {1} per second.", Math.Round(1f / currencyInterval.x, 2), _currencyType); 
+            else
+                return string.Format("Makes 1 {0} every {1}-{2} seconds.", _currencyType, currencyInterval.x, currencyInterval.y); 
         }
     }
 
     public override void Setup()
     {
-        Debug.Log(gameObject.name);
         base.Setup();
-        _storedCash = 0f;
+        _storedCurrency = 0;
     }
 
     public override void Update()
     {
         base.Update();
-        _storedCash = Mathf.Min(_storedCash + _cashPerSecond * Time.deltaTime, _maxStorage);
-        if ((int)_storedCash != (int)(_storedCash - _cashPerSecond * Time.deltaTime))
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
         {
+            _storedCurrency = Mathf.Min(_storedCurrency +  1, _maxStorage);
             _view.Refresh(this);
+            ResetTimer();
         }
-        // GameState.Instance.Cash += cashPerSecond * Time.deltaTime;
     }
 
     public override void Place(Vector2Int pos)
@@ -44,8 +55,14 @@ public class BuildingFarm : Building
 
     public override void OnInteract()
     {
-        GameState.Instance.Cash += _storedCash;
-        _storedCash = 0;
+        if (_storedCurrency == 0) return;
+        GameState.Instance.CurrencyDict[_currencyType] += _storedCurrency;
+        _storedCurrency = 0;
         _view.Refresh(this);
+    }
+
+    void ResetTimer()
+    {
+        _timer = UnityEngine.Random.Range(currencyInterval.x, currencyInterval.y);
     }
 }

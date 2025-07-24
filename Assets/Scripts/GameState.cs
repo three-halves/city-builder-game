@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Battle;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,12 +31,24 @@ public class GameState : MonoBehaviour
     }
 
     // primary currency
-    private float _cash = 0;
+    // private float _cash = 0;
     public float Cash
     {
-        get { return _cash; }
-        set { _cash = value; }
+        get { return CurrencyDict[CurrencyType.Cash]; }
+        set { CurrencyDict[CurrencyType.Cash] = value; }
     }
+
+    public enum CurrencyType
+    {
+        Cash,
+        Fish
+    }
+
+    public Dictionary<CurrencyType, float> CurrencyDict = new()
+    {
+        {CurrencyType.Cash, 0f},
+        {CurrencyType.Fish, 0f},
+    };
 
     void Awake()
     {
@@ -47,11 +60,6 @@ public class GameState : MonoBehaviour
         else{
             Destroy(gameObject);
         }
-    }
-
-    public int GetEffectiveCash()
-    {
-        return (int)_cash;
     }
 
     public delegate void HoveredTileDelegate(Vector2Int tilePos, Tile tile);

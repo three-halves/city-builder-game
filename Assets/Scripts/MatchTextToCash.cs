@@ -6,6 +6,12 @@ public class MatchTextToCash : MonoBehaviour
 
     void Update()
     {
-        _textMesh.text = "Cash: " + GameState.Instance.GetEffectiveCash();
+        string s = "";
+        foreach (var kvp in GameState.Instance.CurrencyDict)
+        {
+            if ((int)kvp.Value > 0 || kvp.Key == GameState.CurrencyType.Cash) 
+                s += kvp.Key + ": " + (int)kvp.Value + "\n";
+        }
+        _textMesh.text = s;
     }
 }

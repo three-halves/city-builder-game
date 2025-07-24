@@ -73,7 +73,7 @@ namespace Battle
 
         public void Heal(int hp)
         {
-            if (BattleManager.Instance.IsBattleOngoing)
+            if (!BattleManager.Instance.IsBattleOngoing)
             {
                 HP = Mathf.Min(HP + hp, Stats.MaxHP);
             }

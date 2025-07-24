@@ -73,6 +73,7 @@ namespace Battle
         void Start()
         {
             _healTimer = _healInterval;
+            IsBattleOngoing = false;
         }
 
         void Update()

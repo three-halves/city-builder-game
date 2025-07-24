@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     [field: SerializeField] public string BuildingDescription {get; private set;} = "Default Building Description";
     [field: SerializeField] public virtual string BuildingTooltip {get;} = "Default Building Tooltip";
     [field: SerializeField] public virtual string OverlayText {get;} = ""; 
+    [field: SerializeField] public virtual bool ShowOverlayIcon {get;} = false; 
     // Is this building purchasable from the regular menu?
     [field: SerializeField] public bool IsPurchasable {get; private set;} = true;
     // Tiles this building cannot be placed on
