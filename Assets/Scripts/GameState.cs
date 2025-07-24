@@ -92,7 +92,7 @@ public class GameState : MonoBehaviour
     void Update()
     {
         #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.F1)) Cash += 1000;
+        if (Input.GetKeyDown(KeyCode.F1)) {Cash += 1000; CurrencyDict[CurrencyType.Fish] += 10;};
         if (Input.GetKeyDown(KeyCode.F3)) BattleManager.Instance.PlayerCharacters[0].Stats.Exp += 10;
         #endif
     }

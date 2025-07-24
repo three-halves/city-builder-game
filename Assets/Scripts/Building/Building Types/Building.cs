@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(BuildingView))]
@@ -9,8 +10,11 @@ public class Building : MonoBehaviour
     [field: SerializeField] public virtual string BuildingTooltip {get;} = "Default Building Tooltip";
     [field: SerializeField] public virtual string OverlayText {get;} = ""; 
     [field: SerializeField] public virtual bool ShowOverlayIcon {get;} = false; 
+    [field: SerializeField] public int maxOwnedCount = -1;
     // Is this building purchasable from the regular menu?
-    [field: SerializeField] public bool IsPurchasable {get; private set;} = true;
+    [SerializeField] private bool _isInitiallyPurchasable = true;
+    [NonSerialized] public bool IsPurchasable = true; 
+
     // Tiles this building cannot be placed on
     [field: SerializeField] public Tile.Biome[] ExcludeBiomes {get; private set;}
     // Index of sprite in sprite database
@@ -21,6 +25,8 @@ public class Building : MonoBehaviour
     // Cost multiplier each purchase
     [field: SerializeField] public float CostScaling {get; private set;} = 1.25f;
 
+    [field: SerializeField] public GameState.CurrencyType CurrencyType{get; private set;} = GameState.CurrencyType.Cash;
+
     public Vector2Int PlacedTilePos {get; private set;}
 
     protected BuildingView _view;
@@ -28,6 +34,7 @@ public class Building : MonoBehaviour
     public virtual void Setup()
     {
         Cost = BaseCost;
+        IsPurchasable = _isInitiallyPurchasable;
     }
 
     public virtual void Update()

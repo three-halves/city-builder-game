@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildingPalleteSegment : MonoBehaviour
+public class BuildingPalleteSegment : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     // The building this pallete segment represents
     [field: SerializeField] public GameObject SegmentBuildingObject;
@@ -27,13 +28,15 @@ public class BuildingPalleteSegment : MonoBehaviour
         int owned = BuildingManager.Instance.OwnedUnplacedAmounts[_buildingIndex];
         if (owned == 0)
         {
-            _costTextMesh.text = "$" + SegmentBuilding.Cost;
+            _costTextMesh.text = SegmentBuilding.Cost + " " + SegmentBuilding.CurrencyType;
         }
         else
         {
             // display quantity of unplaced buildings we own of this type
             _costTextMesh.text = "x " + owned;
         }
+
+        gameObject.SetActive(SegmentBuilding.IsPurchasable);
         
     }
 
@@ -51,5 +54,24 @@ public class BuildingPalleteSegment : MonoBehaviour
     {
         Debug.Log(SegmentBuildingObject.name);
         GameState.Instance.SelectedBuildingIndex = _buildingIndex;
+    }
+    
+    // drag event handling
+    public delegate void OnSegmentDrag(Vector2 delta, int buildingIndex);
+    public event OnSegmentDrag SegmentDragListenter;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        SegmentDragListenter?.Invoke(eventData.delta, _buildingIndex);
     }
 }

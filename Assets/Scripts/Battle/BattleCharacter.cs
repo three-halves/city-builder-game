@@ -10,7 +10,7 @@ namespace Battle
         public int HP { get; private set; }
         [field: SerializeField] public string CharacterName {get; private set;} = "[UNKNOWN]";
         [SerializeField] public Stats Stats;
-        public Stats LocalStats;
+        [NonSerialized] public Stats LocalStats;
         [NonSerialized]public float timer;
         // From battle database
         [SerializeField] private int _aiIndex;
@@ -20,6 +20,8 @@ namespace Battle
         [NonSerialized] public int statusSpriteIndex = 0;
 
         [field: SerializeField] public Sprite Sprite {get; private set;}
+
+        private CharacterAI _ai;
 
         // copy contructor
         public BattleCharacter(BattleCharacter other)
@@ -50,9 +52,9 @@ namespace Battle
         public void Setup(float timerOffset = 0f)
         {
             showStatusIcon = false;
-            BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].Setup(this);
+            _ai = (CharacterAI)Activator.CreateInstance(BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].GetType());
+            _ai.Setup(this);
             if (_startAtFullHealth) HP = Stats.MaxHP;
-            Debug.Log(name + " " + HP);
             timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f) + timerOffset;
             LocalStats = new(Stats);
         }
@@ -61,14 +63,14 @@ namespace Battle
         public void DoTurn(List<BattleCharacter> targetableAllies, List<BattleCharacter> targetableFoes)
         {
             // Next turn timer is determined by AI 
-            timer = BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].DoTurn(this, targetableAllies, targetableFoes);
+            timer = _ai.DoTurn(this, targetableAllies, targetableFoes);
             // timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f);
         }
 
         public void Damage(int damage)
         {
             HP = Mathf.Max(HP - Mathf.Max(damage - LocalStats.Con, 0), 0);
-            BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].OnDamage(this);
+            _ai.OnDamage(this);
         }
 
         public void Heal(int hp)

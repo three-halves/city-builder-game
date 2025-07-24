@@ -28,19 +28,15 @@ public class CameraController : MonoBehaviour
         transform.position = p;
     }
 
-    void OnNavigate(InputValue value)
-    {
-        var v = value.Get<Vector2>();
-        if (v != Vector2.zero)
-        {
-            _targetPos += new Vector3(v.x * _lookSens.x, v.y * _lookSens.y, 0);
-            _smoothTime = 0.001f;
-        }
-    }
-
-    public void  SetTargetPos(Vector3 targetPos, float smoothTime = 0.25f)
+    public void SetTargetPos(Vector3 targetPos, float smoothTime = 0.25f)
     {
         _targetPos = targetPos;
         _smoothTime = smoothTime;
+    }
+
+    public void Navigate(Vector2 delta)
+    {
+        transform.position += (Vector3)(delta * _lookSens);
+        _targetPos = transform.position;
     }
 }

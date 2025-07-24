@@ -76,7 +76,7 @@ public class BuildingManager : MonoBehaviour
             }
             else
             {
-                GameState.Instance.Cash -= unplacedBuilding.Cost;
+                GameState.Instance.CurrencyDict[unplacedBuilding.CurrencyType] -= unplacedBuilding.Cost;
                 unplacedBuilding.IncreaseCost();
             }
             
@@ -87,7 +87,13 @@ public class BuildingManager : MonoBehaviour
             }
             
             // deselect building only if we cant place another
-            // if (!CanBuild(new(), buildingIndex, unplacedBuilding)) GameState.Instance.SelectedBuildingIndex = -1;
+            if (!CanBuild(new(), buildingIndex, unplacedBuilding)) GameState.Instance.SelectedBuildingIndex = -1;
+
+            // remove from palette if we are at max owned count
+            if (unplacedBuilding.maxOwnedCount > 0 && unplacedBuilding.maxOwnedCount <= TotalBuiltCount[buildingIndex] + OwnedUnplacedAmounts[buildingIndex])
+            {
+                unplacedBuilding.IsPurchasable = false;
+            } 
         }
         // build fail
         else 
@@ -106,7 +112,7 @@ public class BuildingManager : MonoBehaviour
             allTilesAreFree &= !tile.IsOccupied && tile.IsClaimed && !unplacedBuilding.ExcludeBiomes.Contains(tile.TileBiome);
         }
 
-        bool canAfford = (GameState.Instance.Cash >= unplacedBuilding.Cost)
+        bool canAfford = (GameState.Instance.CurrencyDict[unplacedBuilding.CurrencyType] >= unplacedBuilding.Cost)
             || OwnedUnplacedAmounts[buildingIndex] > 0;
 
         return allTilesAreFree && canAfford;

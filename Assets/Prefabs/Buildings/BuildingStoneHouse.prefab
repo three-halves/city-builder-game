@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8299767817565944445}
   - component: {fileID: 5401082988363300929}
   m_Layer: 0
-  m_Name: BuildingHouse
+  m_Name: BuildingStoneHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,15 +117,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Footprint>k__BackingField: {x: 1, y: 1}
-  <BuildingName>k__BackingField: House
-  <BuildingDescription>k__BackingField: +Knight EXP
+  <BuildingName>k__BackingField: Stone House
+  <BuildingDescription>k__BackingField: +Rouge EXP
   maxOwnedCount: -1
+  _isInitiallyPurchasable: 0
   <ExcludeBiomes>k__BackingField: 0100000002000000
-  <BuildingSpriteIndex>k__BackingField: 0
-  <BaseCost>k__BackingField: 10
+  <BuildingSpriteIndex>k__BackingField: 5
+  <BaseCost>k__BackingField: 20
   <CostScaling>k__BackingField: 1.25
   <CurrencyType>k__BackingField: 0
-  _heroIndex: 0
+  _heroIndex: 1
   _statType: 5
   _boostAmount: 1
 --- !u!1 &7889610229210263531

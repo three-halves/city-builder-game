@@ -22,6 +22,8 @@ public class Level : MonoBehaviour
     [SerializeField] private float waterAltThreshold = 0.25f;
     [SerializeField] private float rockAltThreshold = 0.75f;
 
+    private CameraController _cameraController;
+
     void Awake()
     {
         if(Instance == null)
@@ -40,7 +42,8 @@ public class Level : MonoBehaviour
         GenerateLevel();
 
         // center cam
-        Camera.main.GetComponent<CameraController>().SetTargetPos(TileToWorldPos(new Vector2(_levelWidth / 2, _levelHeight / 2)));
+        _cameraController = Camera.main.GetComponent<CameraController>();
+        _cameraController.SetTargetPos(TileToWorldPos(new Vector2(_levelWidth / 2, _levelHeight / 2)));
     }
 
     void Update()
@@ -86,7 +89,15 @@ public class Level : MonoBehaviour
                     newTile.Claim();
 
                 _tiles[i, j] = newTile;
+
+                // set up event callbacks
+                newTile.TileDragListener += OnTileDrag;
             }
+        }
+
+        void OnTileDrag(Vector2 delta, Tile tile)
+        {
+            _cameraController.Navigate(delta);
         }
 
         // Second pass, finalize tile biomes

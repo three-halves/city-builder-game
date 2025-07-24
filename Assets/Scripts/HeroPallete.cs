@@ -14,16 +14,23 @@ public class HeroPallete : MonoBehaviour
         // Create building pallete buttons
         for (int i = 0; i < BattleManager.Instance.PlayerCharacters.Count; i++)
         {
-            GameObject o = BuildingManager.Instance.buildingDatabase.Buildings[i];
-            o.GetComponent<Building>().Setup();
             HeroPalleteSegment hps = Instantiate(_segmentPrefab, _layoutParent).GetComponent<HeroPalleteSegment>();
             hps.Setup(i);
             _segments.Add(hps);
         }
+
+        BattleManager.Instance.PartyMemberAddedListener += AddCharacter;
     }
 
     void Update()
     {
         foreach(var segment in _segments) segment.Refresh();
+    }
+
+    private void AddCharacter()
+    {
+        HeroPalleteSegment hps = Instantiate(_segmentPrefab, _layoutParent).GetComponent<HeroPalleteSegment>();
+        hps.Setup(BattleManager.Instance.PlayerCharacters.Count - 1);
+        _segments.Add(hps);
     }
 }

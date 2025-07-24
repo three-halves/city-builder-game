@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(TileView))]
-public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public enum Biome 
     {
@@ -65,18 +65,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         IsClaimed = true;
         _view.Refresh(this);
-    }
-
-    // Pointer Event Handlers
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-
     }
 
     /// <summary>
@@ -139,6 +127,19 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         _view.Refresh(this);
     }
 
+
+    // Pointer Event Handlers
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         // Select this tile if there is no building on top of it
@@ -160,5 +161,26 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         IsHovered = false;
         _view.Refresh(this);
+    }
+
+
+    // Drag event handlers
+
+    public delegate void OnTileDrag(Vector2 delta, Tile tile);
+    public event OnTileDrag TileDragListener;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        TileDragListener.Invoke(eventData.delta, this);
     }
 }

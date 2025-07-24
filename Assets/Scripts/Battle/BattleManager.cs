@@ -59,16 +59,14 @@ namespace Battle
             GameState.Instance.Cash += Mathf.Pow(5, difficulty * 0.15f + 0.5f) + difficulty;
         }
 
-        // public List<BattleCharacter> IntToFoeList(List<int> intList)
-        // {
-        //     List<BattleCharacter> bcs = new();
-        //     foreach (int i in intList)
-        //     {
-        //         bcs.Add(new BattleCharacter(BattleDatabase.Foes[i]));
-        //     }
-        //     return bcs;
-
-        // }
+        public delegate void OnPartyMemberAdded();
+        public event OnPartyMemberAdded PartyMemberAddedListener;
+        
+        public void AddPartyMember(BattleCharacter character)
+        {
+            PlayerCharacters.Add(character);
+            PartyMemberAddedListener?.Invoke();
+        }
 
         void Start()
         {
