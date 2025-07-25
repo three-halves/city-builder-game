@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Bug
   Stats:
-    MaxHP: 2
-    Str: 2
+    MaxHP: 6
+    Str: 6
     Con: 0
     Wis: 0
     Spd: 0

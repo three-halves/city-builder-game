@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Rouge
   Stats:
-    MaxHP: 5
-    Str: 2
-    Con: 1
+    MaxHP: 15
+    Str: 6
+    Con: 3
     Wis: 1
-    Spd: 30
+    Spd: 35
   _aiIndex: 0
   _startAtFullHealth: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: c754535f51966534589c79b604a5b1db, type: 3}

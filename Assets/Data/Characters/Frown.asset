@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Frown
   Stats:
-    MaxHP: 5
-    Str: 2
+    MaxHP: 15
+    Str: 6
     Con: 0
     Wis: 1
     Spd: 1

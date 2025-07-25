@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Shadeflower
   Stats:
-    MaxHP: 8
-    Str: 4
-    Con: 1
+    MaxHP: 24
+    Str: 12
+    Con: 3
     Wis: 0
     Spd: -40
   _aiIndex: 1

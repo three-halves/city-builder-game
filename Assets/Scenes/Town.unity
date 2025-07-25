@@ -2040,7 +2040,7 @@ MonoBehaviour:
   _playerCharacters:
   - {fileID: 11400000, guid: f9cbadccc7095c3418a939c02c47c3d9, type: 2}
   _view: {fileID: 535044345}
-  _healInterval: 1
+  _healInterval: 0.5
 --- !u!4 &1582087564
 Transform:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ namespace Battle
         private int level = 1;
         private int _attackCount = 0;
         private int _takenDamageCount = 0;
+        private BattleCharacter _target;
 
         public override void Setup(BattleCharacter character)
         {
@@ -22,9 +23,11 @@ namespace Battle
         {
             float timer = base.DoTurn(character, targetableAllies, targetableFoes);
             if (targetableFoes.Count <= 0) return timer; 
+
+            if (_target == null || _target.HP <= 0) _target = targetableFoes[Random.Range(0, targetableFoes.Count)];
+
             // Level 1: basic attack
-            BattleCharacter target = targetableFoes[Random.Range(0, targetableFoes.Count)];
-            target.Damage(character.LocalStats.Str);
+            _target.Damage(character.LocalStats.Str);
             _attackCount++;
 
             // level 4: heal on attack

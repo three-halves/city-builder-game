@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1028d8e5bb9f46d4c98e24eecbb7e723, type: 3}
   m_Name: Battle Database
   m_EditorClassIdentifier: 
-  Foes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   levelUpThresholds: 04000000090000001600000041000000
   <EncounterTable>k__BackingField:
   - encounters:
@@ -43,7 +38,6 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a8483f7b11f1afe4fb4f359e7a39cfc1, type: 2}
       - {fileID: 11400000, guid: a8483f7b11f1afe4fb4f359e7a39cfc1, type: 2}
     - foes:
-      - {fileID: 11400000, guid: d4f0818bef9bf964aadbd00e1b9af592, type: 2}
       - {fileID: 11400000, guid: d4f0818bef9bf964aadbd00e1b9af592, type: 2}
       - {fileID: 11400000, guid: d4f0818bef9bf964aadbd00e1b9af592, type: 2}
       - {fileID: 11400000, guid: a8483f7b11f1afe4fb4f359e7a39cfc1, type: 2}

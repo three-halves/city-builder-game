@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Juggling Ball
   Stats:
-    MaxHP: 12
-    Str: 4
-    Con: 1
+    MaxHP: 36
+    Str: 12
+    Con: 2
     Wis: 0
     Spd: -20
   _aiIndex: 2

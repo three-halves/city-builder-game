@@ -50,14 +50,16 @@ MonoBehaviour:
   <Footprint>k__BackingField: {x: 1, y: 1}
   <BuildingName>k__BackingField: Heart Crystal
   <BuildingDescription>k__BackingField: +Knight HP
-  <IsPurchasable>k__BackingField: 1
+  maxOwnedCount: -1
+  _isInitiallyPurchasable: 1
   <ExcludeBiomes>k__BackingField: 0100000002000000
   <BuildingSpriteIndex>k__BackingField: 2
   <BaseCost>k__BackingField: 40
   <CostScaling>k__BackingField: 1.25
+  <CurrencyType>k__BackingField: 0
   _heroIndex: 0
   _statType: 0
-  _boostAmount: 1
+  _boostAmount: 2
 --- !u!114 &2821258870640352069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overlayTextMesh: {fileID: 2325020071199884817}
+  _overlayRenderer: {fileID: 0}
 --- !u!212 &8299767817565944445
 SpriteRenderer:
   m_ObjectHideFlags: 0

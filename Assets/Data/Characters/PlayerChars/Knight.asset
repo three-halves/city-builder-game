@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Knight
   Stats:
-    MaxHP: 5
-    Str: 2
-    Con: 1
+    MaxHP: 15
+    Str: 6
+    Con: 3
     Wis: 1
     Spd: 1
   _aiIndex: 0
