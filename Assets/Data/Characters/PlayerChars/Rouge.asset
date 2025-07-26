@@ -19,6 +19,12 @@ MonoBehaviour:
     Con: 3
     Wis: 1
     Spd: 35
-  _aiIndex: 0
+    DodgeChance: 0
+    SpreadDmg: 0
+    IgnoreCon: 0
+    HealOnHit: 0
+    ThornDmg: 0
+    RewardMultiplier: 0
+  _aiIndex: 3
   _startAtFullHealth: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: c754535f51966534589c79b604a5b1db, type: 3}

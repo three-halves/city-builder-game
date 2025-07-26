@@ -11,7 +11,8 @@ namespace Battle
         {
             new CharacterAIKnight(),
             new CharacterAIBasic(),
-            new CharacterAIMultiHit()
+            new CharacterAIMultiHit(),
+            new CharacterAIRouge()
         };
 
         [SerializeField] public List<int> levelUpThresholds = new();

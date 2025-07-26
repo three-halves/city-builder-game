@@ -22,6 +22,13 @@ namespace Battle
             _timerFillImage.fillAmount = bc.timer / (3f - bc.LocalStats.Spd * 0.04f);
             _statusIcon.enabled = bc.showStatusIcon;
             _statusIcon.sprite = GameState.Instance.SpriteData.Statuses[bc.statusSpriteIndex];
+
+            if (bc.HP <= 0)
+            {
+                _battlerImage.color = Color.gray;
+                _healthBarFillImage.enabled = false;
+                _timerFillImage.enabled = false;
+            }
         }
 
     }

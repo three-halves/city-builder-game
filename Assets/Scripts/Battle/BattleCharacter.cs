@@ -23,6 +23,13 @@ namespace Battle
 
         private CharacterAI _ai;
 
+        public float TurnInterval 
+        {
+            get{
+                return Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f);
+                }
+        }
+
         // copy contructor
         public BattleCharacter(BattleCharacter other)
         {
@@ -52,11 +59,11 @@ namespace Battle
         public void Setup(float timerOffset = 0f)
         {
             showStatusIcon = false;
+            LocalStats = new(Stats);
             _ai = (CharacterAI)Activator.CreateInstance(BattleManager.Instance.BattleDatabase.AITypes[_aiIndex].GetType());
             _ai.Setup(this);
             if (_startAtFullHealth) HP = Stats.MaxHP;
-            timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f) + timerOffset;
-            LocalStats = new(Stats);
+            timer = TurnInterval + timerOffset;
         }
 
         // Called each turn in battle
@@ -67,9 +74,33 @@ namespace Battle
             // timer = Mathf.Max(3f - Stats.Spd * 0.04f, 0.3f);
         }
 
-        public void Damage(int damage)
+        public void Attack(BattleCharacter target, List<BattleCharacter> targetParty)
         {
-            HP = Mathf.Max(HP - Mathf.Max(damage - LocalStats.Con, 0), 0);
+            target.Damage(LocalStats.Str, this);
+
+            if (LocalStats.SpreadDmg > 0) 
+                targetParty.ForEach(x => x.Damage(LocalStats.SpreadDmg, null));
+
+            if (LocalStats.HealOnHit > 0)
+                Heal(LocalStats.HealOnHit);
+        }
+
+        private void Damage(int damage, BattleCharacter attacker)
+        {
+            // try dodge
+            if (UnityEngine.Random.Range(0f, 1f) < LocalStats.DodgeChance)
+            {
+                return;
+            }
+
+            // Remove HP based on damage
+            int effectiveCon = Mathf.Max(LocalStats.Con - ((attacker == null) ? 0 : attacker.LocalStats.IgnoreCon), 0);
+            HP = Mathf.Max(HP - Mathf.Max(damage - effectiveCon, 0), 0);
+
+            // Apply thorns
+            if (LocalStats.ThornDmg > 0 && attacker != null) 
+                attacker.Damage(LocalStats.ThornDmg, null);
+
             _ai.OnDamage(this);
         }
 
@@ -83,6 +114,12 @@ namespace Battle
             {
                 HP = Mathf.Min(HP + hp, LocalStats.MaxHP);
             }
+        }
+
+        public void Stun(float stunAmount)
+        {
+            Debug.Log(name + " Stun");
+            timer += stunAmount;
         }
     }
 }

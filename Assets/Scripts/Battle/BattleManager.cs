@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Battle.Battle;
 
@@ -48,6 +49,8 @@ namespace Battle
             }
 
             // battle over
+            _view.Refresh();
+            yield return new WaitForSeconds(1f);
             battleCompleteDelegate.Invoke(status == BattleStatus.Won);
             _view.Hide();
             IsBattleOngoing = false;
@@ -56,12 +59,13 @@ namespace Battle
 
         public void GiveBattleReward(int difficulty)
         {
-            GameState.Instance.Cash += Mathf.Pow(5, difficulty * 0.15f + 0.5f) + difficulty;
+            GameState.Instance.Cash += (Mathf.Pow(5, difficulty * 0.15f + 0.5f) + difficulty) 
+                * PlayerCharacters.Select(c => c.Stats.RewardMultiplier).Sum();
         }
 
         public delegate void OnPartyMemberAdded();
         public event OnPartyMemberAdded PartyMemberAddedListener;
-        
+
         public void AddPartyMember(BattleCharacter character)
         {
             PlayerCharacters.Add(character);

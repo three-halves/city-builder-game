@@ -12,7 +12,7 @@ namespace Battle
             if (targetableFoes.Count > 0)
             {
                 BattleCharacter target = targetableAllies[Random.Range(0, targetableAllies.Count)];
-                target.Damage(character.LocalStats.Str);
+                character.Attack(target, targetableAllies);
                 _attackCount++;
             }
 

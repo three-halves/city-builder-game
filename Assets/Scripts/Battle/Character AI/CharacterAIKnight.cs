@@ -15,8 +15,10 @@ namespace Battle
             base.Setup(character);
             _attackCount = 0;
             _takenDamageCount = 0;
-            // calculate hero level, get all EXP buildings
             level = character.Stats.Level;
+
+            // level 4: heal on hit
+            if(level >= 4) character.LocalStats.HealOnHit += 3;
         }
 
         public override float DoTurn(BattleCharacter character, List<BattleCharacter> targetableAllies, List<BattleCharacter> targetableFoes)
@@ -27,11 +29,8 @@ namespace Battle
             if (_target == null || _target.HP <= 0) _target = targetableFoes[Random.Range(0, targetableFoes.Count)];
 
             // Level 1: basic attack
-            _target.Damage(character.LocalStats.Str);
+            character.Attack(_target, targetableFoes);
             _attackCount++;
-
-            // level 4: heal on attack
-            if (level >= 4) character.Heal(2);
 
             // Level 2: double attack
             // level 5: triple attack
