@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BuildingPallete : MonoBehaviour
@@ -37,11 +38,20 @@ public class BuildingPallete : MonoBehaviour
         foreach(var segment in _segments) segment.Refresh();
     }
 
-    void OnSegmentDrag(Vector2 delta, int buildingIndex)
+    void OnSegmentDrag(PointerEventData eventData, Vector2 dragStartPos, int buildingIndex)
     {
-        Debug.Log(delta);
-        Debug.Log(_scrollRect.verticalNormalizedPosition);
-        _scrollRect.verticalNormalizedPosition += -delta.y * 3f / _scrollRect.content.sizeDelta.y;
+        Debug.Log(Mathf.Abs(eventData.position.x - dragStartPos.x));
+        // Drag building to place
+        if (Mathf.Abs(eventData.position.x - dragStartPos.x) > 125f)
+        {
+            GameState.Instance.SelectedBuildingIndex = buildingIndex;
+        }
+        // Scroll building list
+        else
+        {
+            _scrollRect.verticalNormalizedPosition += -eventData.delta.y * 3f / _scrollRect.content.sizeDelta.y;
+        }
+        
     }
 
 }

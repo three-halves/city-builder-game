@@ -83,7 +83,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         // Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
         // Level.Instance.GetAdjacentBiomes(tilePos.x, tilePos.y).ForEach(i => Debug.Log(i.ToString()));
         // Try build building
-        BuildingManager.Instance.TryPlaceBuilding(GameState.Instance.SelectedBuildingIndex, tilePos);
+        // BuildingManager.Instance.TryPlaceBuilding(GameState.Instance.SelectedBuildingIndex, tilePos);
 
         #if UNITY_EDITOR
         if (Input.GetKey(KeyCode.F2))
@@ -176,7 +176,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+
     }
 
     public void OnDrag(PointerEventData eventData)

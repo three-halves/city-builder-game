@@ -146,6 +146,11 @@ public class Level : MonoBehaviour
         return tile * TileScale * new Vector2Int(1, -1);
     }
 
+    public Vector2Int WorldPosToTile(Vector2 pos)
+    {
+        return Vector2Int.RoundToInt(pos / TileScale * new Vector2Int(1, -1));
+    }
+
     public List<Tile> GetTilesInArea(Vector2Int p1, Vector2Int p2)
     {
         List<Tile> tiles = new();

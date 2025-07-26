@@ -12,6 +12,8 @@ public class BuildingPalleteSegment : MonoBehaviour, IBeginDragHandler, IEndDrag
     [SerializeField] private Image _icon;
     [SerializeField] private TMPro.TextMeshProUGUI _nameTextMesh;
     [SerializeField] private TMPro.TextMeshProUGUI _costTextMesh;
+
+    private Vector2 _dragStartPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Setup(int dbIndex)
     {
@@ -53,25 +55,29 @@ public class BuildingPalleteSegment : MonoBehaviour, IBeginDragHandler, IEndDrag
     public void OnSubmit()
     {
         Debug.Log(SegmentBuildingObject.name);
-        GameState.Instance.SelectedBuildingIndex = _buildingIndex;
+        // GameState.Instance.SelectedBuildingIndex = _buildingIndex;
     }
     
     // drag event handling
-    public delegate void OnSegmentDrag(Vector2 delta, int buildingIndex);
+    public delegate void OnSegmentDrag(PointerEventData eventData, Vector2 startEventPos, int buildingIndex);
     public event OnSegmentDrag SegmentDragListenter;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        _dragStartPos = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        // try place building
+        BuildingManager.Instance.TryPlaceBuilding(
+            GameState.Instance.SelectedBuildingIndex, 
+            Level.Instance.WorldPosToTile(Camera.main.ScreenToWorldPoint(eventData.position))
+        );
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        SegmentDragListenter?.Invoke(eventData.delta, _buildingIndex);
+        SegmentDragListenter?.Invoke(eventData, _dragStartPos, _buildingIndex);
     }
 }

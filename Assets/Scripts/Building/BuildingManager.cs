@@ -87,7 +87,8 @@ public class BuildingManager : MonoBehaviour
             }
             
             // deselect building only if we cant place another
-            if (!CanBuild(new(), buildingIndex, unplacedBuilding)) GameState.Instance.SelectedBuildingIndex = -1;
+            // if (!CanBuild(new(), buildingIndex, unplacedBuilding)) GameState.Instance.SelectedBuildingIndex = -1;
+            GameState.Instance.SelectedBuildingIndex = -1;
 
             // remove from palette if we are at max owned count
             if (unplacedBuilding.maxOwnedCount > 0 && unplacedBuilding.maxOwnedCount <= TotalBuiltCount[buildingIndex] + OwnedUnplacedAmounts[buildingIndex])
@@ -98,7 +99,8 @@ public class BuildingManager : MonoBehaviour
         // build fail
         else 
         {
-            Debug.Log("Build Fail");
+            // Debug.Log("Build Fail");
+            GameState.Instance.SelectedBuildingIndex = -1;
         }
 
         BuildingPlacedListener.Invoke(buildingIndex, canBuild);
